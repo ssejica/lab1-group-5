@@ -140,7 +140,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void addNumber(String number) {
-        text_display.setText(text_display.getText() + number);
+        if(text_display.getText().equals("Error")){
+            text_display.setText(number);
+        } else {
+            text_display.setText(text_display.getText() + number);
+        }
+
     }
 
     private void clear_display() {
