@@ -136,7 +136,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String evaluate(String expression) throws ScriptException {
         String result = engine.eval(expression).toString();
         BigDecimal decimal = new BigDecimal(result);
-        return decimal.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString();
+        BigDecimal one = new BigDecimal("1.00");
+        if(decimal.remainder(one).equals(one.subtract(one))){
+            return decimal.setScale(0).toPlainString();
+        } else {
+            return decimal.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString();
+        }
     }
 
     private void addNumber(String number) {
